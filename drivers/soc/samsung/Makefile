@@ -26,6 +26,9 @@ obj-$(CONFIG_ARCH_EXYNOS)	+= exynos-smc.o
 obj-$(CONFIG_EXYNOS_PM_DVS)        += exynos-pm-dvs.o
 obj-$(CONFIG_EXYNOS_RGT)        += exynos-rgt.o
 
+# USI
+obj-$(CONFIG_USI) += usi.o
+
 # USI_V2
 obj-$(CONFIG_USI_V2) += usi_v2.o
 # CP
