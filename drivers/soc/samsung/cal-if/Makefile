@@ -16,3 +16,4 @@ obj-$(CONFIG_ACPM_DVFS)			+= acpm_dvfs.o fvmap.o
 obj-$(CONFIG_CMU_EWF)			+= cmu_ewf.o
 
 obj-$(CONFIG_SOC_EXYNOS9110)            += exynos9110/cal_data.o
+obj-$(CONFIG_SOC_EXYNOS9810)            += exynos9810/cal_data.o
