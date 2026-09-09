@@ -17,7 +17,7 @@
 
 		compatible = "sec_modem,modem_pdata";
 		status = "okay";
-		interrupts = <0 74 0>, <0 440 0>; /* INTREQ_ALIVE_CP_ACTIVE, INTREQ_CP2AP_RESET_REQ */
+		interrupts = <0 74 IRQ_TYPE_LEVEL_HIGH>, <0 440 IRQ_TYPE_LEVEL_HIGH>; /* INTREQ_ALIVE_CP_ACTIVE, INTREQ_CP2AP_RESET_REQ */
 
 		/* common pdata */
 		mif,name = "ss360ap";
