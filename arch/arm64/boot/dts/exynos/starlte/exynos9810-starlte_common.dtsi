@@ -27,19 +27,18 @@
 		parameter_size = <0x32000>;
 	};
 
-	chosen {
-		bootargs = "console=ram root=/dev/ram0 clk_ignore_unused bcm_setup=0xffffff80f8e00000 androidboot.hardware=samsungexynos9810 androidboot.selinux=permissive androidboot.debug_level=0x4948 ecd_setup=disable pmic_info=0x3 ccic_info=0x1 firmware_class.path=/vendor/firmware reserve-fimc=0xffffff80fa000000";
-		linux,initrd-start = <0x82000000>;
-		linux,initrd-end = <0x821FFFFF>;
-	};
-
 	memory {
 		device_type = "memory";
 		reg = <0x0 0x80000000 0x3c800000>,
 			  <0x0 0xc0000000 0x20000000>,
 			  <0x0 0xe1900000 0x1e700000>,
-			  <0x8 0x80000000 0x80000000>,
-			  <0x9 0x00000000 0x80000000>;
+			  <0x8 0x80000000 0x80000000>;
+	};
+
+	chosen {
+		bootargs = "console=ram root=/dev/ram0 clk_ignore_unused bcm_setup=0xffffff80f8e00000 androidboot.hardware=samsungexynos9810 androidboot.selinux=permissive androidboot.debug_level=0x4948 ecd_setup=disable pmic_info=0x3 ccic_info=0x1 firmware_class.path=/vendor/firmware reserve-fimc=0xffffff80fa000000";
+		linux,initrd-start = <0x82000000>;
+		linux,initrd-end = <0x821FFFFF>;
 	};
 
 	fixed-rate-clocks {
