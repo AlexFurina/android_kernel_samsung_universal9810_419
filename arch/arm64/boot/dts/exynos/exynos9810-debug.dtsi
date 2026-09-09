@@ -55,6 +55,13 @@
                              <0 INTREQ__TREX_P_BUS1_DEBUG IRQ_TYPE_LEVEL_HIGH>;  /* PERI_BUS_1  */
         };
 
+	exynos-debug-test {
+		compatible = "samsung,exynos-debug-test";
+		nr_cpu = <0x2>;
+		nr_little_cpu = <0x2>;
+		little_cpu_start = <0x0>;
+	};
+
         coresight@1e000000 {
 		compatible = "exynos,coresight";
 		base = <0x1e000000>;
