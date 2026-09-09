@@ -20,6 +20,22 @@
 #define EXYNOS_DM_RELATION_L		0
 #define EXYNOS_DM_RELATION_H		1
 
+enum exynos_dm_type {
+	DM_CPU_CL0 = 0,
+	DM_CPU_CL1,
+	DM_MIF,
+	DM_INT,
+	DM_INTCAM,
+	DM_FSYS0,
+	DM_CAM,
+	DM_DISP,
+	DM_AUD,
+	DM_IVA,
+	DM_SCORE,
+	DM_GPU,
+	DM_TYPE_END
+};
+
 enum exynos_constraint_type {
 	CONSTRAINT_MIN = 0,
 	CONSTRAINT_MAX,
@@ -34,6 +50,7 @@ enum dvfs_direction {
 
 struct exynos_dm_freq {
 	u32				master_freq;
+	u32				constraint_freq;
 	u32				slave_freq;
 };
 
@@ -54,6 +71,7 @@ struct exynos_dm_constraint {
 	u32				table_length;
 
 	enum exynos_constraint_type	constraint_type;
+	enum exynos_dm_type		constraint_dm_type;
 	char				dm_type_name[EXYNOS_DM_TYPE_NAME_LEN];
 	struct exynos_dm_freq		*freq_table;
 
@@ -68,7 +86,7 @@ struct exynos_dm_data {
 #ifdef CONFIG_EXYNOS_ACPM
 	bool				policy_use;
 #endif
-	int		dm_type;
+	enum exynos_dm_type		dm_type;
 	char				dm_type_name[EXYNOS_DM_TYPE_NAME_LEN];
 
 	int			my_order;		// Scaling order in domain_order
