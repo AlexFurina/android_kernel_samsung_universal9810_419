@@ -718,7 +718,6 @@
 				<8>, <9>, <10>, <11>;
 		clocks = <&clock OSCCLK>, <&clock GATE_MCT>;
 		clock-names = "fin_pll", "mct";
-		use-clockevent-only;
 
 		mct_map: mct-map {
 			#interrupt-cells = <1>;
