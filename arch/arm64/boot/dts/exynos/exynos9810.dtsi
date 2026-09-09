@@ -3101,9 +3101,14 @@
 		       enable-active-high;
 	};
 
-	reboot {
-		compatible = "exynos,reboot";
-		pmu_base = <0x14060000>;
+	exynos-reboot {
+		compatible = "samsung,exynos-reboot";
+		samsung,syscon-phandle = <&pmu_system_controller>;
+		shutdown-offset = <0x330C>;
+		shutdown-trigger = <0x100>;
+		reboot-offset = <0x400>;
+		reboot-trigger = <0x1>;
+		reboot-cmd-offset = <0x0810>;
 	};
 
 	handler {
