@@ -53,7 +53,19 @@
 
 #define CREATE_TRACE_POINTS
 #include <trace/events/exynos_devfreq.h>
+
+#if 0
 static struct exynos_devfreq_data **devfreq_data;
+#endif
+
+#ifdef CONFIG_ARM_EXYNOS9810_BUS_DEVFREQ
+struct exynos_devfreq_init_func {
+	int (*init_prepare)(struct exynos_devfreq_data *);
+};
+
+static struct exynos_devfreq_init_func exynos_devfreq_init[DEVFREQ_TYPE_END];
+static struct exynos_devfreq_data *devfreq_data[DEVFREQ_TYPE_END];
+#endif
 
 static u32 freq_array[6];
 static u32 boot_array[2];
@@ -1709,6 +1721,21 @@ static int exynos_devfreq_parse_dt(struct device_node *np, struct exynos_devfrq_
 }
 #endif
 
+#ifdef CONFIG_ARM_EXYNOS9810_BUS_DEVFREQ
+int register_exynos_devfreq_init_prepare(enum exynos_devfreq_type type,
+					 int (*func) (struct exynos_devfreq_data *))
+{
+	if (type >= DEVFREQ_TYPE_END) {
+		pr_err("%s: unsupport devfreq type : %d\n", __func__, type);
+		return -EINVAL;
+	}
+
+	exynos_devfreq_init[type].init_prepare = func;
+
+	return 0;
+}
+#endif
+
 s32 exynos_devfreq_get_opp_idx(struct exynos_devfreq_opp_table *table, unsigned int size, u32 freq)
 {
 	int i;
@@ -2345,6 +2372,7 @@ static struct platform_driver exynos_devfreq_driver = {
 	},
 };
 
+#if 0
 static int exynos_devfreq_root_probe(struct platform_device *pdev)
 {
 	struct device_node *np;
@@ -2364,6 +2392,7 @@ static int exynos_devfreq_root_probe(struct platform_device *pdev)
 
 	return 0;
 }
+#endif
 
 static const struct of_device_id exynos_devfreq_root_match[] = {
 	{
@@ -2372,6 +2401,7 @@ static const struct of_device_id exynos_devfreq_root_match[] = {
 	{},
 	};
 
+#if 0
 static struct platform_driver exynos_devfreq_root_driver = {
 	.probe = exynos_devfreq_root_probe,
 	.driver = {
@@ -2382,6 +2412,7 @@ static struct platform_driver exynos_devfreq_root_driver = {
 };
 
 module_platform_driver(exynos_devfreq_root_driver);
+#endif
 MODULE_AUTHOR("Taekki Kim <taekki.kim@samsung.com>");
 MODULE_DESCRIPTION("Samsung EXYNOS Soc series devfreq common driver");
 MODULE_LICENSE("GPL");

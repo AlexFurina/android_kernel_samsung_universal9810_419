@@ -147,6 +147,15 @@ config ARM_RK3399_DMC_DEVFREQ
           It sets the frequency for the memory controller and reads the usage counts
           from hardware.
 
+config ARM_EXYNOS9810_BUS_DEVFREQ
+	bool "ARM Exynos9810 Memory Bus DEVFREQ Driver"
+	default y
+	depends on ARM_EXYNOS_DEVFREQ
+	depends on SOC_EXYNOS9810
+	select DEVFREQ_GOV_SIMPLE_INTERACTIVE
+	help
+	  This adds the DEVFREQ driver for Exynos9810 memory and int.
+
 source "drivers/devfreq/event/Kconfig"
 
 endif # PM_DEVFREQ
