@@ -36,6 +36,9 @@ static const char * product_id_to_name(unsigned int product_id)
 	case EXYNOS9110_SOC_ID:
 		soc_name = "EXYNOS9110";
 		break;
+	case EXYNOS9810_SOC_ID:
+		soc_name = "EXYNOS9810";
+		break;
 	default:
 		soc_name = "UNKNOWN";
 	}
