@@ -333,6 +333,23 @@ config SOC_EXYNOS9110
         select PINCTRL
         select SAMSUNG_DMADEV
 
+config SOC_EXYNOS9810
+	bool "Samsung EXYNOS9810"
+	select SOC_SAMSUNG
+	select ARCH_EXYNOS
+	select ARCH_HAS_CPUFREQ
+	select HAVE_S3C2410_I2C if I2C
+	select HAVE_S3C2410_WATCHDOG if WATCHDOG
+	select HAVE_S3C_RTC if RTC_CLASS
+	select ARCH_SUPPORTS_MSI
+	select ARM_AMBA
+	select CLKSRC_OF
+	select USE_OF
+	select COMMON_CLK_SAMSUNG
+	select CLKSRC_EXYNOS_MCT
+	select PINCTRL
+	select SAMSUNG_DMADEV
+
 endmenu
 
 endmenu
