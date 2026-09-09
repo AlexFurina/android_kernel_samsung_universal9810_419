@@ -80,7 +80,7 @@
 			compatible = "sec-nfc";
 			reg = <0x27>;
 
-			interrupts = <2 0 0>;
+			interrupts = <2 0 IRQ_TYPE_LEVEL_HIGH>;
 			interrupt-parent = <&gpa1>;
 
 			sec-nfc,ven-gpio = <&expander_gpios 11 0>;
@@ -100,7 +100,7 @@
 			compatible = "hrmsensor";
 			reg = <0x57>;
 			interrupt-parent = <&gpp3>;
-			interrupts = <0 0 0>;
+			interrupts = <0 0 IRQ_TYPE_LEVEL_HIGH>;
 			pinctrl-names = "default", "sleep", "idle";
 			pinctrl-0 = <&hrm_irq &hrm_en>;
 			pinctrl-1 = <&hrm_irqsleep &hrm_ensleep>;
@@ -239,7 +239,7 @@
 		rtcfmradio@64 {
 			compatible = "richwave,rtc6213n", "rtc6213n";
 			reg = <0x64>;
-			interrupts = <1 0 0>;
+			interrupts = <1 0 IRQ_TYPE_LEVEL_HIGH>;
 			interrupt-parent = <&gpa2>;
 			pinctrl-names = "default";
 			pinctrl-0 = <&fmradio_int &fm_lna_en>;
@@ -268,7 +268,7 @@
 			pinctrl-names = "default";
 			pinctrl-0 = <&grip_irq>;
 			interrupt-parent = <&gpa3>;
-			interrupts = <0 0 0>;
+			interrupts = <0 0 IRQ_TYPE_LEVEL_HIGH>;
 
 			/* only phase 3 enable */
 			sx9320,phen = <0x03>;

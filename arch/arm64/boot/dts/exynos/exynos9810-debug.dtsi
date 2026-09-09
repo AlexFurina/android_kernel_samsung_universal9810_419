@@ -40,19 +40,19 @@
 
        exynos-handler {
                compatible = "samsung,exynos-handler";
-               interrupts =    <0 157 0>,      /* INTREQ__CPUCL0_nINTERRIRQ */
-                               <0 180 0>;      /* INTREQ__CPUCL1_nECCERRIRQ */
+               interrupts =    <0 157 IRQ_TYPE_LEVEL_HIGH>,      /* INTREQ__CPUCL0_nINTERRIRQ */
+                               <0 180 IRQ_TYPE_LEVEL_HIGH>;      /* INTREQ__CPUCL1_nECCERRIRQ */
                handler_nr_irq = <2>;
        };
 
 	itmon {
                 compatible = "samsung,exynos-itmon";
-                interrupts = <0 INTREQ__TREX_DEBUG 0>,  /* DATA_BUS_C  */
-                             <0 INTREQ__TREX_D_CORE_debugInterrupt 0>, /* DATA_CORE   */
-                             <0 INTREQ__TREX_P0_CORE_debugInterrupt 0>, /* PERI_CORE_0 */
-                             <0 INTREQ__TREX_P_DEBUG 0>,  /* PERI_BUS_C  */
-                             <0 INTREQ__TREX_P1_CORE_debugInterrupt 0>, /* PERI_CORE_1 */
-                             <0 INTREQ__TREX_P_BUS1_DEBUG 0>;  /* PERI_BUS_1  */
+                interrupts = <0 INTREQ__TREX_DEBUG IRQ_TYPE_LEVEL_HIGH>,  /* DATA_BUS_C  */
+                             <0 INTREQ__TREX_D_CORE_debugInterrupt IRQ_TYPE_LEVEL_HIGH>, /* DATA_CORE   */
+                             <0 INTREQ__TREX_P0_CORE_debugInterrupt IRQ_TYPE_LEVEL_HIGH>, /* PERI_CORE_0 */
+                             <0 INTREQ__TREX_P_DEBUG IRQ_TYPE_LEVEL_HIGH>,  /* PERI_BUS_C  */
+                             <0 INTREQ__TREX_P1_CORE_debugInterrupt IRQ_TYPE_LEVEL_HIGH>, /* PERI_CORE_1 */
+                             <0 INTREQ__TREX_P_BUS1_DEBUG IRQ_TYPE_LEVEL_HIGH>;  /* PERI_BUS_1  */
         };
 
         coresight@1e000000 {

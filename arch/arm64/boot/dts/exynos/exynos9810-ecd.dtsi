@@ -17,7 +17,7 @@
        exynos_console_debugger {
 	       compatible = "samsung,exynos_console_debugger";
 	       reg = <0x0 0x10440000 0x100>;
-	       interrupts = <0 INTREQ__UART_DBG 0>;
+	       interrupts = <0 INTREQ__UART_DBG IRQ_TYPE_LEVEL_HIGH>;
 	       interrupt-names = "uart_irq";
 	       pinctrl-names = "default";
 	       pinctrl-0 = <&uart0_bus>;

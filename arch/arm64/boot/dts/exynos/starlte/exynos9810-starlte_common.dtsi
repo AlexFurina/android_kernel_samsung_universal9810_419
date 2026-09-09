@@ -561,7 +561,7 @@
 			s2mps18,wakeup = "enabled";
 			s2mps18,irq-gpio = <&gpa0 1 0>;
 			reg = <0x00>;
-			interrupts = <1 0 0>;
+			interrupts = <1 0 IRQ_TYPE_LEVEL_HIGH>;
 			interrupt-parent = <&gpa0>;
 			pinctrl-names = "default";
 			pinctrl-0 = <&pmic_irq &pm_wrsti &smpl_warn>;
@@ -963,7 +963,7 @@
 		reg = <0x0 0x14170000 0x180>;
 		mcu,name = "mcu_ipc_cp";
 		mcu,id = <0>;
-		interrupts = <0 69 0 >;
+		interrupts = <0 69 IRQ_TYPE_LEVEL_HIGH>;
 		mcu,irq_affinity_mask = <3>;
 	};
 
