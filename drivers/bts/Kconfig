@@ -19,4 +19,10 @@ config EXYNOS9110_BTS
         help
           Enable BTS (Bus traffic shaper) support for exynos9110
 
+config EXYNOS9810_BTS
+	bool "Bus traffic shaper support for exynos9810"
+	default y
+	depends on SOC_EXYNOS9810
+	help
+          Enable BTS (Bus traffic shaper) support for exynos9810
 endif
