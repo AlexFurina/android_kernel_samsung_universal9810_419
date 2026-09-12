@@ -505,6 +505,7 @@
 	};
 
 	exynos-powermode {
+		eint_wakeup_mask_offset = <0x60C>, <0x644>;
 		wakeup-masks {
 			/*
 			 * wakeup_mask configuration
