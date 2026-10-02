@@ -29,8 +29,6 @@ struct exynos5_i2c {
 	struct clk		*rate_clk;
 	struct device		*dev;
 	int			state;
-	struct regmap		*usi_reg;
-	unsigned int		usi_offset;
 
 	/*
 	 * Since the TRANS_DONE bit is cleared on read, and we may read it
@@ -44,9 +42,6 @@ struct exynos5_i2c {
 	unsigned int		hs_clock;
 	unsigned int		fs_plus_clock;
 	unsigned int		stand_clock;
-	unsigned int		clock_frequency;
-	unsigned int		tscl_h;
-	unsigned int		tscl_l;
 
 	/* to set the source clock */
 	unsigned int		default_clk;
