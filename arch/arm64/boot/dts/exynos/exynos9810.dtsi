@@ -2567,7 +2567,7 @@
 		#address-cells = <1>;
 		#size-cells = <0>;
 		clocks = <&clock GATE_SPI_CAM0>, <&clock SPI_CAM0>;
-		clock-names = "gate_spi_clk", "ipclk_spi0";
+		clock-names = "gate_spi_clk", "ipclk_spi";
 		pinctrl-names = "default";
 		pinctrl-0 = <&spi0_bus>;
 		status = "disabled";
@@ -2590,7 +2590,7 @@
 		#address-cells = <1>;
 		#size-cells = <0>;
 		clocks = <&clock GATE_USI00>, <&clock USI00>;
-		clock-names = "gate_spi_clk", "ipclk_spi0";
+		clock-names = "gate_spi_clk", "ipclk_spi";
 		pinctrl-names = "default";
 		pinctrl-0 = <&spi1_bus>;
 		status = "disabled";
@@ -2613,7 +2613,7 @@
 		#address-cells = <1>;
 		#size-cells = <0>;
 		clocks = <&clock GATE_USI01>, <&clock USI01>;
-		clock-names = "gate_spi_clk", "ipclk_spi0";
+		clock-names = "gate_spi_clk", "ipclk_spi";
 		pinctrl-names = "default";
 		pinctrl-0 = <&spi2_bus>;
 		status = "disabled";
@@ -2636,7 +2636,7 @@
 		#address-cells = <1>;
 		#size-cells = <0>;
 		clocks = <&clock GATE_USI02>, <&clock USI02>;
-		clock-names = "gate_spi_clk", "ipclk_spi0";
+		clock-names = "gate_spi_clk", "ipclk_spi";
 		pinctrl-names = "default";
 		pinctrl-0 = <&spi3_bus>;
 		status = "disabled";
@@ -2659,7 +2659,7 @@
 		#address-cells = <1>;
 		#size-cells = <0>;
 		clocks = <&clock GATE_USI03>, <&clock USI03>;
-		clock-names = "gate_spi_clk", "ipclk_spi0";
+		clock-names = "gate_spi_clk", "ipclk_spi";
 		pinctrl-names = "default";
 		pinctrl-0 = <&spi4_bus>;
 		status = "disabled";
@@ -2682,7 +2682,7 @@
 		#address-cells = <1>;
 		#size-cells = <0>;
 		clocks = <&clock GATE_USI04>, <&clock USI04>;
-		clock-names = "gate_spi_clk", "ipclk_spi0";
+		clock-names = "gate_spi_clk", "ipclk_spi";
 		pinctrl-names = "default";
 		pinctrl-0 = <&spi5_bus>;
 		status = "disabled";
@@ -2703,7 +2703,7 @@
 		#address-cells = <1>;
 		#size-cells = <0>;
 		clocks = <&clock GATE_USI05>, <&clock USI05>;
-		clock-names = "gate_spi_clk", "ipclk_spi0";
+		clock-names = "gate_spi_clk", "ipclk_spi";
 		pinctrl-names = "default";
 		pinctrl-0 = <&spi6_bus>;
 		status = "disabled";
@@ -2724,7 +2724,7 @@
 		#address-cells = <1>;
 		#size-cells = <0>;
 		clocks = <&clock GATE_USI06>, <&clock USI06>;
-		clock-names = "gate_spi_clk", "ipclk_spi0";
+		clock-names = "gate_spi_clk", "ipclk_spi";
 		pinctrl-names = "default";
 		pinctrl-0 = <&spi7_bus>;
 		status = "disabled";
@@ -2745,7 +2745,7 @@
 		#address-cells = <1>;
 		#size-cells = <0>;
 		clocks = <&clock GATE_USI07>, <&clock USI07>;
-		clock-names = "gate_spi_clk", "ipclk_spi0";
+		clock-names = "gate_spi_clk", "ipclk_spi";
 		pinctrl-names = "default";
 		pinctrl-0 = <&spi8_bus>;
 		status = "disabled";
@@ -2766,7 +2766,7 @@
 		#address-cells = <1>;
 		#size-cells = <0>;
 		clocks = <&clock GATE_USI08>, <&clock USI08>;
-		clock-names = "gate_spi_clk", "ipclk_spi0";
+		clock-names = "gate_spi_clk", "ipclk_spi";
 		pinctrl-names = "default";
 		pinctrl-0 = <&spi9_bus>;
 		status = "disabled";
@@ -2787,7 +2787,7 @@
 		#address-cells = <1>;
 		#size-cells = <0>;
 		clocks = <&clock GATE_USI09>, <&clock USI09>;
-		clock-names = "gate_spi_clk", "ipclk_spi0";
+		clock-names = "gate_spi_clk", "ipclk_spi";
 		pinctrl-names = "default";
 		pinctrl-0 = <&spi10_bus>;
 		status = "disabled";
@@ -2808,7 +2808,7 @@
 		#address-cells = <1>;
 		#size-cells = <0>;
 		clocks = <&clock GATE_USI10>, <&clock USI10>;
-		clock-names = "gate_spi_clk", "ipclk_spi0";
+		clock-names = "gate_spi_clk", "ipclk_spi";
 		pinctrl-names = "default";
 		pinctrl-0 = <&spi11_bus>;
 		status = "disabled";
@@ -2829,7 +2829,7 @@
 		#address-cells = <1>;
 		#size-cells = <0>;
 		clocks = <&clock GATE_USI11>, <&clock USI11>;
-		clock-names = "gate_spi_clk", "ipclk_spi0";
+		clock-names = "gate_spi_clk", "ipclk_spi";
 		pinctrl-names = "default";
 		pinctrl-0 = <&spi12_bus>;
 		status = "disabled";
@@ -2850,7 +2850,7 @@
 		#address-cells = <1>;
 		#size-cells = <0>;
 		clocks = <&clock GATE_USI12>, <&clock USI12>;
-		clock-names = "gate_spi_clk", "ipclk_spi0";
+		clock-names = "gate_spi_clk", "ipclk_spi";
 		pinctrl-names = "default";
 		pinctrl-0 = <&spi13_bus>;
 		status = "disabled";
@@ -2871,7 +2871,7 @@
 		#address-cells = <1>;
 		#size-cells = <0>;
 		clocks = <&clock GATE_USI13>, <&clock USI13>;
-		clock-names = "gate_spi_clk", "ipclk_spi0";
+		clock-names = "gate_spi_clk", "ipclk_spi";
 		pinctrl-names = "default";
 		pinctrl-0 = <&spi14_bus>;
 		status = "disabled";
@@ -2892,7 +2892,7 @@
 		#address-cells = <1>;
 		#size-cells = <0>;
 		clocks = <&clock GATE_USI14>, <&clock USI14>;
-		clock-names = "gate_spi_clk", "ipclk_spi0";
+		clock-names = "gate_spi_clk", "ipclk_spi";
 		pinctrl-names = "default";
 		pinctrl-0 = <&spi15_bus>;
 		status = "disabled";
@@ -2913,7 +2913,7 @@
 		#address-cells = <1>;
 		#size-cells = <0>;
 		clocks = <&clock GATE_USI_CMGP00>, <&clock USI_CMGP00>;
-		clock-names = "gate_spi_clk", "ipclk_spi0";
+		clock-names = "gate_spi_clk", "ipclk_spi";
 		pinctrl-names = "default";
 		pinctrl-0 = <&spi16_bus>;
 		status = "disabled";
@@ -2934,7 +2934,7 @@
 		#address-cells = <1>;
 		#size-cells = <0>;
 		clocks = <&clock GATE_USI_CMGP01>, <&clock USI_CMGP01>;
-		clock-names = "gate_spi_clk", "ipclk_spi0";
+		clock-names = "gate_spi_clk", "ipclk_spi";
 		pinctrl-names = "default";
 		pinctrl-0 = <&spi17_bus>;
 		status = "disabled";
@@ -2955,7 +2955,7 @@
 		#address-cells = <1>;
 		#size-cells = <0>;
 		clocks = <&clock GATE_USI_CMGP02>, <&clock USI_CMGP02>;
-		clock-names = "gate_spi_clk", "ipclk_spi0";
+		clock-names = "gate_spi_clk", "ipclk_spi";
 		pinctrl-names = "default";
 		pinctrl-0 = <&spi18_bus>;
 		status = "disabled";
@@ -2976,7 +2976,7 @@
 		#address-cells = <1>;
 		#size-cells = <0>;
 		clocks = <&clock GATE_USI_CMGP03>, <&clock USI_CMGP03>;
-		clock-names = "gate_spi_clk", "ipclk_spi0";
+		clock-names = "gate_spi_clk", "ipclk_spi";
 		pinctrl-names = "default";
 		pinctrl-0 = <&spi19_bus>;
 		status = "disabled";
@@ -2997,7 +2997,7 @@
 		#address-cells = <1>;
 		#size-cells = <0>;
 		clocks = <&clock GATE_USI_CHUB00>, <&clock CHUB_USI00>;
-		clock-names = "gate_spi_clk", "ipclk_spi0";
+		clock-names = "gate_spi_clk", "ipclk_spi";
 		pinctrl-names = "default";
 		pinctrl-0 = <&spi20_bus>;
 		status = "disabled";
@@ -3018,7 +3018,7 @@
 		#address-cells = <1>;
 		#size-cells = <0>;
 		clocks = <&clock GATE_USI_CHUB01>, <&clock CHUB_USI01>;
-		clock-names = "gate_spi_clk", "ipclk_spi0";
+		clock-names = "gate_spi_clk", "ipclk_spi";
 		pinctrl-names = "default";
 		pinctrl-0 = <&spi21_bus>;
 		status = "disabled";
@@ -3037,7 +3037,7 @@
 		pinctrl-0 = <&uart0_bus>;
 		samsung,usi-serial-v2;
 		clocks = <&clock GATE_UART_DBG>, <&clock UART_DBG>;
-		clock-names = "ipclk_uart_clk0", "ipclk_uart0";
+		clock-names = "gate_uart_clk0", "ipclk_uart0";
 		status = "disabled";
 	};
 
@@ -4301,7 +4301,7 @@
 		pinctrl-0 = <&uart1_bus_single &uart1_rxd_pull>; /* or _bus_dual */
 		samsung,usi-serial-v2;
 		clocks = <&clock GATE_UART_BT>, <&clock UART_BT>;
-		clock-names = "ipclk_uart_clk1", "ipclk_uart1";
+		clock-names = "gate_uart_clk1", "ipclk_uart1";
 		status = "disabled";
 	};
 
@@ -4318,7 +4318,7 @@
 		pinctrl-0 = <&uart2_bus_single>; /* or _bus_dual */
 		samsung,usi-serial-v2;
 		clocks = <&clock GATE_USI00>, <&clock USI00>;
-		clock-names = "ipclk_uart_clk2", "ipclk_uart2";
+		clock-names = "gate_uart_clk2", "ipclk_uart2";
 		status = "disabled";
 	};
 
@@ -4335,7 +4335,7 @@
 		pinctrl-0 = <&uart3_bus_single>; /* or _bus_dual */
 		samsung,usi-serial-v2;
 		clocks = <&clock GATE_USI01>, <&clock USI01>;
-		clock-names = "ipclk_uart_clk3", "ipclk_uart3";
+		clock-names = "gate_uart_clk3", "ipclk_uart3";
 		status = "disabled";
 	};
 
@@ -4352,7 +4352,7 @@
 		pinctrl-0 = <&uart4_bus_single>; /* or _bus_dual */
 		samsung,usi-serial-v2;
 		clocks = <&clock GATE_USI02>, <&clock USI02>;
-		clock-names = "ipclk_uart_clk4", "ipclk_uart4";
+		clock-names = "gate_uart_clk4", "ipclk_uart4";
 		status = "disabled";
 	};
 
@@ -4369,7 +4369,7 @@
 		pinctrl-0 = <&uart5_bus_single>; /* or _bus_dual */
 		samsung,usi-serial-v2;
 		clocks = <&clock GATE_USI03>, <&clock USI03>;
-		clock-names = "ipclk_uart_clk5", "ipclk_uart5";
+		clock-names = "gate_uart_clk5", "ipclk_uart5";
 		status = "disabled";
 	};
 
@@ -4384,7 +4384,7 @@
 		pinctrl-0 = <&uart6_bus_single>; /* or _bus_dual */
 		samsung,usi-serial-v2;
 		clocks = <&clock GATE_USI04>, <&clock USI04>;
-		clock-names = "ipclk_uart_clk6", "ipclk_uart6";
+		clock-names = "gate_uart_clk6", "ipclk_uart6";
 		status = "disabled";
 	};
 
@@ -4399,7 +4399,7 @@
 		pinctrl-0 = <&uart7_bus_single>; /* or _bus_dual */
 		samsung,usi-serial-v2;
 		clocks = <&clock GATE_USI05>, <&clock USI05>;
-		clock-names = "ipclk_uart_clk7", "ipclk_uart7";
+		clock-names = "gate_uart_clk7", "ipclk_uart7";
 		status = "disabled";
 	};
 
@@ -4414,7 +4414,7 @@
 		pinctrl-0 = <&uart8_bus_single>; /* or _bus_dual */
 		samsung,usi-serial-v2;
 		clocks = <&clock GATE_USI06>, <&clock USI06>;
-		clock-names = "ipclk_uart_clk8", "ipclk_uart8";
+		clock-names = "gate_uart_clk8", "ipclk_uart8";
 		status = "disabled";
 	};
 
@@ -4429,7 +4429,7 @@
 		pinctrl-0 = <&uart9_bus_single>; /* or _bus_dual */
 		samsung,usi-serial-v2;
 		clocks = <&clock GATE_USI07>, <&clock USI07>;
-		clock-names = "ipclk_uart_clk9", "ipclk_uart9";
+		clock-names = "gate_uart_clk9", "ipclk_uart9";
 		status = "disabled";
 	};
 
@@ -4444,7 +4444,7 @@
 		pinctrl-0 = <&uart10_bus_single>; /* or _bus_dual */
 		samsung,usi-serial-v2;
 		clocks = <&clock GATE_USI08>, <&clock USI08>;
-		clock-names = "ipclk_uart_clk10", "ipclk_uart10";
+		clock-names = "gate_uart_clk10", "ipclk_uart10";
 		status = "disabled";
 	};
 
@@ -4459,7 +4459,7 @@
 		pinctrl-0 = <&uart11_bus_single>; /* or _bus_dual */
 		samsung,usi-serial-v2;
 		clocks = <&clock GATE_USI09>, <&clock USI09>;
-		clock-names = "ipclk_uart_clk11", "ipclk_uart11";
+		clock-names = "gate_uart_clk11", "ipclk_uart11";
 		status = "disabled";
 	};
 
@@ -4474,7 +4474,7 @@
 		pinctrl-0 = <&uart12_bus_single>; /* or _bus_dual */
 		samsung,usi-serial-v2;
 		clocks = <&clock GATE_USI10>, <&clock USI10>;
-		clock-names = "ipclk_uart_clk12", "ipclk_uart12";
+		clock-names = "gate_uart_clk12", "ipclk_uart12";
 		status = "disabled";
 	};
 
@@ -4489,7 +4489,7 @@
 		pinctrl-0 = <&uart13_bus_single>; /* or _bus_dual */
 		samsung,usi-serial-v2;
 		clocks = <&clock GATE_USI11>, <&clock USI11>;
-		clock-names = "ipclk_uart_clk13", "ipclk_uart13";
+		clock-names = "gate_uart_clk13", "ipclk_uart13";
 		status = "disabled";
 	};
 
@@ -4504,7 +4504,7 @@
 		pinctrl-0 = <&uart14_bus_single>; /* or _bus_dual */
 		samsung,usi-serial-v2;
 		clocks = <&clock GATE_USI12>, <&clock USI12>;
-		clock-names = "ipclk_uart_clk14", "ipclk_uart14";
+		clock-names = "gate_uart_clk14", "ipclk_uart14";
 		status = "disabled";
 	};
 
@@ -4519,7 +4519,7 @@
 		pinctrl-0 = <&uart15_bus_single>; /* or _bus_dual */
 		samsung,usi-serial-v2;
 		clocks = <&clock GATE_USI13>, <&clock USI13>;
-		clock-names = "ipclk_uart_clk15", "ipclk_uart15";
+		clock-names = "gate_uart_clk15", "ipclk_uart15";
 		status = "disabled";
 	};
 
@@ -4534,7 +4534,7 @@
 		pinctrl-0 = <&uart16_bus_single>; /* or _bus_dual */
 		samsung,usi-serial-v2;
 		clocks = <&clock GATE_USI14>, <&clock USI14>;
-		clock-names = "ipclk_uart_clk16", "ipclk_uart16";
+		clock-names = "gate_uart_clk16", "ipclk_uart16";
 		status = "disabled";
 	};
 
@@ -4549,7 +4549,7 @@
 		pinctrl-0 = <&uart17_bus_single>; /* or _bus_dual */
 		samsung,usi-serial-v2;
 		clocks = <&clock GATE_USI_CMGP00>, <&clock USI_CMGP00>;
-		clock-names = "ipclk_uart_clk17", "ipclk_uart17";
+		clock-names = "gate_uart_clk17", "ipclk_uart17";
 		status = "disabled";
 	};
 
@@ -4564,7 +4564,7 @@
 		pinctrl-0 = <&uart18_bus_single>; /* or _bus_dual */
 		samsung,usi-serial-v2;
 		clocks = <&clock GATE_USI_CMGP01>, <&clock USI_CMGP01>;
-		clock-names = "ipclk_uart_clk18", "ipclk_uart18";
+		clock-names = "gate_uart_clk18", "ipclk_uart18";
 		status = "disabled";
 	};
 
@@ -4579,7 +4579,7 @@
 		pinctrl-0 = <&uart19_bus_single>; /* or _bus_dual */
 		samsung,usi-serial-v2;
 		clocks = <&clock GATE_USI_CMGP02>, <&clock USI_CMGP02>;
-		clock-names = "ipclk_uart_clk19", "ipclk_uart10";
+		clock-names = "gate_uart_clk19", "ipclk_uart19";
 		status = "disabled";
 	};
 
@@ -4594,7 +4594,7 @@
 		pinctrl-0 = <&uart20_bus_single>; /* or _bus_dual */
 		samsung,usi-serial-v2;
 		clocks = <&clock GATE_USI_CMGP03>, <&clock USI_CMGP03>;
-		clock-names = "ipclk_uart_clk20", "ipclk_uart20";
+		clock-names = "gate_uart_clk20", "ipclk_uart20";
 		status = "disabled";
 	};
 
@@ -4609,7 +4609,7 @@
 		pinctrl-0 = <&uart21_bus_single>; /* or _bus_dual */
 		samsung,usi-serial-v2;
 		clocks = <&clock GATE_USI_CHUB00>, <&clock CHUB_USI00>;
-		clock-names = "ipclk_uart_clk21", "ipclk_uart21";
+		clock-names = "gate_uart_clk21", "ipclk_uart21";
 		status = "disabled";
 	};
 
@@ -4624,7 +4624,7 @@
 		pinctrl-0 = <&uart22_bus_single>; /* or _bus_dual */
 		samsung,usi-serial-v2;
 		clocks = <&clock GATE_USI_CHUB01>, <&clock CHUB_USI01>;
-		clock-names = "ipclk_uart_clk22", "ipclk_uart22";
+		clock-names = "gate_uart_clk22", "ipclk_uart22";
 		status = "disabled";
 	};
 
