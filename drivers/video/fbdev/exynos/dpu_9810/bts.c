@@ -11,7 +11,7 @@
 
 #include "decon.h"
 
-#include <soc/samsung/bts.h>
+#include <../../../../../drivers/bts/bts-exynos9810.h>
 #include <media/v4l2-subdev.h>
 
 #define DISP_FACTOR		100UL

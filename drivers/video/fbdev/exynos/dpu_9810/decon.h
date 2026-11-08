@@ -25,7 +25,7 @@
 #include <linux/platform_device.h>
 #include <media/v4l2-device.h>
 #include <media/videobuf2-core.h>
-#include <soc/samsung/bts.h>
+#include "../../../../../drivers/bts/bts-exynos9810.h"
 #if defined(CONFIG_EXYNOS_ITMON)
 #include <soc/samsung/exynos-itmon.h>
 #endif

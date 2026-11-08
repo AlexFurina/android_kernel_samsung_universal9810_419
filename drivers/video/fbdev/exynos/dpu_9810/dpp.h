@@ -23,7 +23,7 @@
 #include <linux/of.h>
 #include <linux/of_address.h>
 #include <linux/ion_exynos.h>
-#include <soc/samsung/bts.h>
+#include <../../../../../drivers/bts/bts-exynos9810.h>
 
 #include "decon.h"
 #include "regs-dpp.h"
