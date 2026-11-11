@@ -3910,21 +3910,6 @@
 			<&fimc_is_sensor2>, <&fimc_is_sensor3>, <&camerapp_gdc>;
 	};
 
-	speedy@141C0000 {
-		compatible = "samsung,exynos-speedy";
-		reg = <0x0 0x141C0000 0x2000>;
-		interrupts = <0 INTREQ__SPEEDY_APM IRQ_TYPE_LEVEL_HIGH>;
-		#address-cells = <1>;
-		#size-cells = <0>;
-		pinctrl-names = "default";
-		pinctrl-0 = <&speedy_bus>;
-#if 0
-		clocks = <&clock GATE_SPEEDY_BATCHER_WRAP_BATCHER_AP>;
-		clock-names = "gate_speedy";
-#endif
-		status = "disabled";
-	};
-
 	acpm {
 		compatible = "samsung,exynos-acpm";
 		#address-cells = <2>;
@@ -4257,6 +4242,21 @@
 		io-channel-ranges;
 		clocks = <&clock GATE_ADC_CMGP>;
 		clock-names = "gate_adcif";
+	};
+
+	speedy@141C0000 {
+		compatible = "samsung,exynos-speedy";
+		reg = <0x0 0x141C0000 0x2000>;
+		interrupts = <0 INTREQ__SPEEDY_APM IRQ_TYPE_LEVEL_HIGH>;
+		#address-cells = <1>;
+		#size-cells = <0>;
+		pinctrl-names = "default";
+		pinctrl-0 = <&speedy_bus>;
+#if 0
+		clocks = <&clock GATE_SPEEDY_BATCHER_WRAP_BATCHER_AP>;
+		clock-names = "gate_speedy";
+#endif
+		status = "disabled";
 	};
 
 	rtc@141E0000 {
