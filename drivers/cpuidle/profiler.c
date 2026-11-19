@@ -527,6 +527,10 @@ static int __init cpuidle_profile_init(void)
 	int ret = 0;
 
 	dev = device_create(idle_class, NULL, MKDEV(0, 0), NULL, "cpuidle_profiler");
+	if (IS_ERR_OR_NULL(dev)) {
+		pr_err("%s: device_create failed\n", __func__);
+		return 0;
+	}
 
 	ret = sysfs_create_group(&dev->kobj, &cpuidle_profile_group);
 	if (ret)
