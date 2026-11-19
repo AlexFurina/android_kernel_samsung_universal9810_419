@@ -1612,8 +1612,6 @@
 	hsi2c_0: hsi2c@10860000 {
 		compatible = "samsung,exynos5-hsi2c";
 		samsung,check-transdone-int;
-		samsung,usi-phandle = <&sysreg_cmgp_usi>;
-		samsung,usi-offset = <0x0>;
 		default-clk = <200000000>;
 		reg = <0x0 0x10860000 0x1000>;
 		interrupts = <0 INTREQ__I2C_CAM0 IRQ_TYPE_LEVEL_HIGH>;
@@ -1634,8 +1632,6 @@
 	hsi2c_1: hsi2c@10870000 {
 		compatible = "samsung,exynos5-hsi2c";
 		samsung,check-transdone-int;
-		samsung,usi-phandle = <&sysreg_cmgp_usi>;
-		samsung,usi-offset = <0x4>;
 		default-clk = <200000000>;
 		reg = <0x0 0x10870000 0x1000>;
 		interrupts = <0 INTREQ__I2C_CAM1 IRQ_TYPE_LEVEL_HIGH>;
@@ -1656,8 +1652,6 @@
 	hsi2c_2: hsi2c@10880000 {
 		compatible = "samsung,exynos5-hsi2c";
 		samsung,check-transdone-int;
-		samsung,usi-phandle = <&sysreg_cmgp_usi>;
-		samsung,usi-offset = <0x10>;
 		default-clk = <200000000>;
 		reg = <0x0 0x10880000 0x1000>;
 		interrupts = <0 INTREQ__I2C_CAM2 IRQ_TYPE_LEVEL_HIGH>;
@@ -1678,8 +1672,6 @@
 	hsi2c_3: hsi2c@10890000 {
 		compatible = "samsung,exynos5-hsi2c";
 		samsung,check-transdone-int;
-		samsung,usi-phandle = <&sysreg_cmgp_usi>;
-		samsung,usi-offset = <0x14>;
 		default-clk = <200000000>;
 		reg = <0x0 0x10890000 0x1000>;
 		interrupts = <0 INTREQ__I2C_CAM3 IRQ_TYPE_LEVEL_HIGH>;
@@ -1700,8 +1692,6 @@
 	hsi2c_4: hsi2c@10450000 {
 		compatible = "samsung,exynos5-hsi2c";
 		samsung,check-transdone-int;
-		samsung,usi-phandle = <&sysreg_cmgp_usi>;
-		samsung,usi-offset = <0x20>;
 		default-clk = <200000000>;
 		reg = <0x0 0x10450000 0x1000>;
 		interrupts = <0 INTREQ__USI00_USI IRQ_TYPE_LEVEL_HIGH>;
@@ -1722,8 +1712,6 @@
 	hsi2c_5: hsi2c@10460000 {
 		compatible = "samsung,exynos5-hsi2c";
 		samsung,check-transdone-int;
-		samsung,usi-phandle = <&sysreg_cmgp_usi>;
-		samsung,usi-offset = <0x24>;
 		default-clk = <200000000>;
 		reg = <0x0 0x10460000 0x1000>;
 		interrupts = <0 INTREQ__USI00_I2C IRQ_TYPE_LEVEL_HIGH>;
@@ -1744,8 +1732,6 @@
 	hsi2c_6: hsi2c@10470000 {
 		compatible = "samsung,exynos5-hsi2c";
 		samsung,check-transdone-int;
-		samsung,usi-phandle = <&sysreg_cmgp_usi>;
-		samsung,usi-offset = <0x30>;
 		default-clk = <200000000>;
 		reg = <0x0 0x10470000 0x1000>;
 		interrupts = <0 INTREQ__USI01_USI IRQ_TYPE_LEVEL_HIGH>;
@@ -1766,8 +1752,6 @@
 	hsi2c_7: hsi2c@10480000 {
 		compatible = "samsung,exynos5-hsi2c";
 		samsung,check-transdone-int;
-		samsung,usi-phandle = <&sysreg_cmgp_usi>;
-		samsung,usi-offset = <0x34>;
 		default-clk = <200000000>;
 		reg = <0x0 0x10480000 0x1000>;
 		interrupts = <0 INTREQ__USI01_I2C IRQ_TYPE_LEVEL_HIGH>;
@@ -1788,8 +1772,6 @@
 	hsi2c_8: hsi2c@10490000 {
 		compatible = "samsung,exynos5-hsi2c";
 		samsung,check-transdone-int;
-		samsung,usi-phandle = <&sysreg_peri_usi>;
-		samsung,usi-offset = <0x20>;
 		default-clk = <200000000>;
 		reg = <0x0 0x10490000 0x1000>;
 		interrupts = <0 INTREQ__USI02_USI IRQ_TYPE_LEVEL_HIGH>;
@@ -1810,8 +1792,6 @@
 	hsi2c_9: hsi2c@104A0000 {
 		compatible = "samsung,exynos5-hsi2c";
 		samsung,check-transdone-int;
-		samsung,usi-phandle = <&sysreg_peri_usi>;
-		samsung,usi-offset = <0x40>;
 		default-clk = <200000000>;
 		reg = <0x0 0x104a0000 0x1000>;
 		interrupts = <0 INTREQ__USI02_I2C IRQ_TYPE_LEVEL_HIGH>;
@@ -1832,8 +1812,6 @@
 	hsi2c_10: hsi2c@104B0000 {
 		compatible = "samsung,exynos5-hsi2c";
 		samsung,check-transdone-int;
-		samsung,usi-phandle = <&sysreg_peri_usi>;
-		samsung,usi-offset = <0x44>;
 		default-clk = <200000000>;
 		reg = <0x0 0x104B0000 0x1000>;
 		interrupts = <0 INTREQ__USI03_USI IRQ_TYPE_LEVEL_HIGH>;
@@ -2555,8 +2533,6 @@
 		compatible = "samsung,exynos-spi";
 		reg = <0x0 0x10850000 0x100>;
 		samsung,spi-fifosize = <256>;
-		samsung,usi-phandle = <&sysreg_cmgp_usi>;
-		samsung,usi-offset = <0x0>;
 		interrupts = <0 INTREQ__SPI_CAM0 IRQ_TYPE_LEVEL_HIGH>;
 /*
 		dma-mode;
@@ -2578,8 +2554,6 @@
 		compatible = "samsung,exynos-spi";
 		reg = <0x0 0x10450000 0x100>;
 		samsung,spi-fifosize = <64>;
-		samsung,usi-phandle = <&sysreg_cmgp_usi>;
-		samsung,usi-offset = <0x10>;
 		interrupts = <0 INTREQ__USI00_USI IRQ_TYPE_LEVEL_HIGH>;
 /*
 		dma-mode;
@@ -2601,8 +2575,6 @@
 		compatible = "samsung,exynos-spi";
 		reg = <0x0 0x10470000 0x100>;
 		samsung,spi-fifosize = <64>;
-		samsung,usi-phandle = <&sysreg_cmgp_usi>;
-		samsung,usi-offset = <0x20>;
 		interrupts = <0 INTREQ__USI01_USI IRQ_TYPE_LEVEL_HIGH>;
 /*
 		dma-mode;
@@ -2624,8 +2596,6 @@
 		compatible = "samsung,exynos-spi";
 		reg = <0x0 0x10490000 0x100>;
 		samsung,spi-fifosize = <64>;
-		samsung,usi-phandle = <&sysreg_cmgp_usi>;
-		samsung,usi-offset = <0x30>;
 		interrupts = <0 INTREQ__USI02_USI IRQ_TYPE_LEVEL_HIGH>;
 /*
 		dma-mode;
@@ -2647,8 +2617,6 @@
 		compatible = "samsung,exynos-spi";
 		reg = <0x0 0x104B0000 0x100>;
 		samsung,spi-fifosize = <64>;
-		samsung,usi-phandle = <&sysreg_peri_usi>;
-		samsung,usi-offset = <0x30>;
 		interrupts = <0 INTREQ__USI03_USI IRQ_TYPE_LEVEL_HIGH>;
 /*
 		dma-mode;
@@ -2670,8 +2638,6 @@
 		compatible = "samsung,exynos-spi";
 		reg = <0x0 0x104D0000 0x100>;
 		samsung,spi-fifosize = <64>;
-		samsung,usi-phandle = <&sysreg_peri_usi>;
-		samsung,usi-offset = <0x40>;
 		interrupts = <0 INTREQ__USI04_USI IRQ_TYPE_LEVEL_HIGH>;
 /*
 		dma-mode;
@@ -3028,8 +2994,6 @@
 	serial_0: uart@10440000 {
 		compatible = "samsung,exynos-uart";
 		samsung,separate-uart-clk;
-		samsung,usi-phandle = <&sysreg_peri_usi>;
-		samsung,usi-offset = <0x10>;
 		reg = <0x0 0x10440000 0x100>;
 		samsung,fifo-size = <256>;
 		interrupts = <0 INTREQ__UART_DBG IRQ_TYPE_LEVEL_HIGH>;
@@ -4292,8 +4256,6 @@
 	serial_1: uart@10840000 {
 		compatible = "samsung,exynos-uart";
 		samsung,separate-uart-clk;
-		samsung,usi-phandle = <&sysreg_cmgp_usi>;
-		samsung,usi-offset = <0x0>;
 		reg = <0x0 0x10840000 0x100>;
 		samsung,fifo-size = <256>;
 		interrupts = <0 INTREQ__UART_BT IRQ_TYPE_LEVEL_HIGH>;
@@ -4309,8 +4271,6 @@
 	serial_2: uart@10450000 {
 		compatible = "samsung,exynos-uart";
 		samsung,separate-uart-clk;
-		samsung,usi-phandle = <&sysreg_cmgp_usi>;
-		samsung,usi-offset = <0x10>;
 		reg = <0x0 0x10450000 0x100>;
 		samsung,fifo-size = <64>;
 		interrupts = <0 INTREQ__USI00_USI IRQ_TYPE_LEVEL_HIGH>;
@@ -4326,8 +4286,6 @@
 	serial_3: uart@10470000 {
 		compatible = "samsung,exynos-uart";
 		samsung,separate-uart-clk;
-		samsung,usi-phandle = <&sysreg_cmgp_usi>;
-		samsung,usi-offset = <0x20>;
 		reg = <0x0 0x10470000 0x100>;
 		samsung,fifo-size = <64>;
 		interrupts = <0 INTREQ__USI01_USI IRQ_TYPE_LEVEL_HIGH>;
@@ -4343,8 +4301,6 @@
 	serial_4: uart@10490000 {
 		compatible = "samsung,exynos-uart";
 		samsung,separate-uart-clk;
-		samsung,usi-phandle = <&sysreg_cmgp_usi>;
-		samsung,usi-offset = <0x30>;
 		reg = <0x0 0x10490000 0x100>;
 		samsung,fifo-size = <64>;
 		interrupts = <0 INTREQ__USI02_USI IRQ_TYPE_LEVEL_HIGH>;
@@ -4360,8 +4316,6 @@
 	serial_5: uart@104B0000 {
 		compatible = "samsung,exynos-uart";
 		samsung,separate-uart-clk;
-		samsung,usi-phandle = <&sysreg_peri_usi>;
-		samsung,usi-offset = <0x40>;
 		reg = <0x0 0x104B0000 0x100>;
 		samsung,fifo-size = <64>;
 		interrupts = <0 INTREQ__USI03_USI IRQ_TYPE_LEVEL_HIGH>;
