@@ -123,7 +123,7 @@ do {							\
 	(flag) = t_flag;				\
 } while(0)
 
-#define REGULATOR_INFO_ID	6
+#define REGULATOR_INFO_ID      8
 #define REGULATOR_SS_MAX	128
 #define NO_SS_RANGE		(REGULATOR_SS_MAX + 100)
 #define NO_SET_REGMAP		(REGULATOR_SS_MAX + 99)

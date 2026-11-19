@@ -145,6 +145,12 @@ void acpm_log_print(void)
 	/* ACPM Log data dequeue & print */
 	front = __raw_readl(acpm_debug->log_buff_front);
 	rear = __raw_readl(acpm_debug->log_buff_rear);
+	if (front >= acpm_debug->log_buff_len || rear >= acpm_debug->log_buff_len ||
+	    acpm_debug->log_buff_size < 8 || (acpm_debug->log_buff_size & 3)) {
+		pr_err_once("acpm: bad log state front=%u rear=%u len=%u size=%u\n",
+			front, rear, acpm_debug->log_buff_len, acpm_debug->log_buff_size);
+		return;
+	}
 
 	while (rear != front) {
 		log_header = __raw_readl(acpm_debug->log_buff_base + acpm_debug->log_buff_size * rear);
@@ -721,8 +727,6 @@ static void log_buffer_init(struct device *dev, struct device_node *node)
 
 	spin_lock_init(&acpm_debug->lock);
 
-	if (acpm_initdata->regulator_id)
-		acpm_reg_id = acpm_initdata->regulator_id;
 }
 
 static int channel_init(void)
