@@ -530,7 +530,7 @@ static void exynos_pd_sync_state(struct exynos_pm_domain *pd)
 	if (need_sync == 0) {
 		pr_info("%s sync_state: turn_off = %d\n", pd->name,
 			pd->turn_off_on_sync);
-		if (pd->turn_off_on_sync)
+		if (0 && pd->turn_off_on_sync) /* TEMP: DSPM save_seq SLVERR on 9810 */
 			__exynos_pd_power_off(pd);
 		if (pd->parent)
 			exynos_pd_sync_state(pd->parent);
