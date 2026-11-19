@@ -555,6 +555,10 @@ static int dbg_snapshot_rmem_setup(struct device_node *root)
 
 		dbg_snapshot_set_item_enable(rmem->name, en);
 		item = dbg_snapshot_get_item(rmem->name);
+		if (!item) {
+			pr_err("debug-snapshot: unknown item %s, skip\n", rmem->name);
+			continue;
+		}
 		if (!rmem->base || !rmem->size) {
 			pr_err("debug-snapshot: %s item wrong base(0x%x) or size(0x%x)\n",
 					item->name, rmem->base, rmem->size);
@@ -880,3 +884,30 @@ module_exit(dbg_snapshot_exit);
 
 MODULE_DESCRIPTION("Debug-Snapshot");
 MODULE_LICENSE("GPL v2");
+
+#define DSS_PSTORE_BASE 0xfed10000
+#define DSS_PSTORE_SIZE 0x8000
+
+static struct ramoops_platform_data dbg_snapshot_ramoops_data = {
+    .mem_address = DSS_PSTORE_BASE,
+    .mem_size    = DSS_PSTORE_SIZE,
+    .record_size = SZ_4K,
+    .console_size = SZ_16K,
+    .pmsg_size   = SZ_4K,
+    .dump_oops   = 1,
+};
+
+static struct platform_device dbg_snapshot_ramoops = {
+    .name = "ramoops",
+    .dev = {
+        .platform_data = &dbg_snapshot_ramoops_data,
+    },
+};
+
+static int __init dbg_snapshot_pstore_init(void)
+{
+    pr_info("debug-snapshot: ramoops at 0x%lx size 0x%lx\n",
+        (unsigned long)DSS_PSTORE_BASE, (unsigned long)DSS_PSTORE_SIZE);
+    return platform_device_register(&dbg_snapshot_ramoops);
+}
+postcore_initcall(dbg_snapshot_pstore_init);
