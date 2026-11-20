@@ -8,7 +8,7 @@
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2 as
  * published by the Free Software Foundation.
- */
+*/
 
 #include <linux/module.h>
 #include <linux/platform_device.h>
@@ -20,18 +20,12 @@
 #include <linux/delay.h>
 #include <soc/samsung/exynos-pmu.h>
 #include <soc/samsung/exynos-itmon.h>
-#include <soc/samsung/debug-snapshot.h>
 #if defined(CONFIG_SEC_SIPC_MODEM_IF)
 #include <soc/samsung/exynos-modem-ctrl.h>
-#endif
-#ifdef CONFIG_SEC_DEBUG
-#include <linux/sec_debug.h>
 #endif
 #ifdef CONFIG_EXYNOS_ACPM_S2D
 #include <soc/samsung/acpm_ipc_ctrl.h>
 #endif
-
-//#define MULTI_IRQ_SUPPORT_ITMON
 
 #define OFFSET_TMOUT_REG		(0x2000)
 #define OFFSET_REQ_R			(0x0)
@@ -652,7 +646,7 @@ const static char *itmon_nodestring[] = {
 static struct itmon_dev *g_itmon;
 
 /* declare notifier_list */
-ATOMIC_NOTIFIER_HEAD(itmon_notifier_list);
+static ATOMIC_NOTIFIER_HEAD(itmon_notifier_list);
 
 static const struct of_device_id itmon_dt_match[] = {
 	{.compatible = "samsung,exynos-itmon",
@@ -680,7 +674,6 @@ static void itmon_switch_scandump(struct itmon_dev *itmon)
 		ret = exynos_pmu_read(EXYNOS_PMU_BURNIN_CTRL, &val);
 		ret = exynos_pmu_write(EXYNOS_PMU_BURNIN_CTRL, val | BIT_ENABLE_DBGSEL_WDTRESET);
 		s3c2410wdt_set_emergency_reset(3);
-		dbg_snapshot_spin_func();
 	}
 }
 
@@ -688,7 +681,6 @@ static void itmon_switch_scandump(struct itmon_dev *itmon)
 static void __itmon_switch_s2d(void)
 {
 	s3c2410wdt_set_emergency_reset(3);
-	dbg_snapshot_spin_func();
 }
 #endif
 
@@ -997,15 +989,11 @@ static void itmon_report_traceinfo(struct itmon_dev *itmon,
 	struct itmon_platdata *pdata = itmon->pdata;
 	struct itmon_traceinfo *traceinfo = &pdata->traceinfo[trans_type];
 	struct itmon_nodegroup *group = NULL;
-#ifdef CONFIG_SEC_DEBUG_EXTRA_INFO
-	char temp_buf[SZ_128];
-#endif
 
 	if (!traceinfo->dirty)
 		return;
 
-	dev_err(itmon->dev,
-		"\n--------------------------------------------------------------------------\n"
+	pr_info("--------------------------------------------------------------------------\n"
 		"      Transaction Information\n\n"
 		"      > Master         : %s %s\n"
 		"      > Target         : %s\n"
@@ -1016,15 +1004,14 @@ static void itmon_report_traceinfo(struct itmon_dev *itmon,
 		traceinfo->dest ? traceinfo->dest : "Unknown",
 		traceinfo->target_addr,
 		(unsigned int)traceinfo->target_addr == INVALID_REMAPPING ?
-		"(Violation Access by CP maybe)" : "",
+		"(BAAW Remapped address)" : "",
 		trans_type == TRANS_TYPE_READ ? "READ" : "WRITE",
 		itmon_errcode[traceinfo->errcode]);
 
 	if (node) {
 		struct itmon_tracedata *tracedata = &node->tracedata;
 
-		dev_err(itmon->dev,
-			" > Size           : %u bytes x %u burst => %u bytes\n"
+		pr_info("      > Size           : %u bytes x %u burst => %u bytes\n"
 			"      > Burst Type     : %u (0:FIXED, 1:INCR, 2:WRAP)\n"
 			"      > Level          : %s\n"
 			"      > Protection     : %s\n",
@@ -1035,14 +1022,12 @@ static void itmon_report_traceinfo(struct itmon_dev *itmon,
 			(BIT_AXPROT(tracedata->ext_info_2) & 0x2) ? "Non-secure access" : "Secure access");
 
 		group = node->group;
-		dev_err(itmon->dev,
-			"\n      > Path Type      : %s\n"
+		pr_info("      > Path Type      : %s\n"
 			"--------------------------------------------------------------------------\n",
 			itmon_pathtype[group->bus_type]);
 
 	} else {
-		dev_err(itmon->dev,
-			"\n--------------------------------------------------------------------------\n");
+		pr_info("--------------------------------------------------------------------------\n");
 	}
 }
 
@@ -1055,8 +1040,7 @@ static void itmon_report_pathinfo(struct itmon_dev *itmon,
 	struct itmon_traceinfo *traceinfo = &pdata->traceinfo[trans_type];
 
 	if (!traceinfo->path_dirty) {
-		dev_err(itmon->dev,
-			"\n--------------------------------------------------------------------------\n"
+		pr_info("--------------------------------------------------------------------------\n"
 			"      ITMON Report (%s)\n"
 			"--------------------------------------------------------------------------\n"
 			"      PATH Information\n",
@@ -1065,23 +1049,19 @@ static void itmon_report_pathinfo(struct itmon_dev *itmon,
 	}
 	switch (node->type) {
 	case M_NODE:
-		dev_err(itmon->dev,
-			"\n      > %14s, %8s(0x%08X)\n",
+		pr_info("      > %14s, %8s(0x%08X)\n",
 			node->name, "M_NODE", node->phy_regs + tracedata->offset);
 		break;
 	case T_S_NODE:
-		dev_err(itmon->dev,
-			"\n      > %14s, %8s(0x%08X)\n",
+		pr_info("      > %14s, %8s(0x%08X)\n",
 			node->name, "T_S_NODE", node->phy_regs + tracedata->offset);
 		break;
 	case T_M_NODE:
-		dev_err(itmon->dev,
-			"\n      > %14s, %8s(0x%08X)\n",
+		pr_info("      > %14s, %8s(0x%08X)\n",
 			node->name, "T_M_NODE", node->phy_regs + tracedata->offset);
 		break;
 	case S_NODE:
-		dev_err(itmon->dev,
-			"\n      > %14s, %8s(0x%08X)\n",
+		pr_info("      > %14s, %8s(0x%08X)\n",
 			node->name, "S_NODE", node->phy_regs + tracedata->offset);
 		break;
 	}
@@ -1291,8 +1271,7 @@ static void itmon_route_tracedata(struct itmon_dev *itmon)
 
 	if (pdata->traceinfo[TRANS_TYPE_READ].dirty ||
 		pdata->traceinfo[TRANS_TYPE_WRITE].dirty)
-		dev_err(itmon->dev,
-			"\n      Raw Register Information(ITMON Internal Information)\n\n");
+			pr_info("      Raw Register Information(ITMON Internal Information)\n\n");
 
 	for (trans_type = 0; trans_type < TRANS_TYPE_NUM; trans_type++) {
 		for (i = M_NODE; i < NODE_TYPE; i++) {
@@ -1309,8 +1288,7 @@ static void itmon_route_tracedata(struct itmon_dev *itmon)
 
 	if (pdata->traceinfo[TRANS_TYPE_READ].dirty ||
 		pdata->traceinfo[TRANS_TYPE_WRITE].dirty)
-		dev_err(itmon->dev,
-			"\n--------------------------------------------------------------------------\n");
+		pr_info("--------------------------------------------------------------------------\n");
 
 	for (trans_type = 0; trans_type < TRANS_TYPE_NUM; trans_type++) {
 		if (!pdata->crash_in_progress) {
@@ -1358,8 +1336,7 @@ static void itmon_trace_data(struct itmon_dev *itmon,
 		/* Only NOT S-Node is able to make log to registers */
 		break;
 	default:
-		dev_err(itmon->dev,
-			"Unknown Error - node:%s offset:%u\n", node->name, offset);
+		pr_info("Unknown Error - node:%s offset:%u\n", node->name, offset);
 		break;
 	}
 
@@ -1386,8 +1363,7 @@ static void itmon_trace_data(struct itmon_dev *itmon,
 
 		list_add(&new_node->list, &pdata->tracelist[read]);
 	} else {
-		dev_err(itmon->dev,
-			"failed to kmalloc for %s node %x offset\n",
+		pr_info("failed to kmalloc for %s node %x offset\n",
 			node->name, offset);
 	}
 }
@@ -1676,7 +1652,7 @@ static ssize_t itmon_s2d_store(struct kobject *kobj,
 }
 #endif
 static ssize_t itmon_timeout_show(struct kobject *kobj,
-			         struct kobj_attribute *attr, char *buf)
+		struct kobj_attribute *attr, char *buf)
 {
 	unsigned long i, offset;
 	ssize_t n = 0;
@@ -1703,7 +1679,7 @@ static ssize_t itmon_timeout_show(struct kobject *kobj,
 }
 
 static ssize_t itmon_timeout_val_show(struct kobject *kobj,
-			         struct kobj_attribute *attr, char *buf)
+		struct kobj_attribute *attr, char *buf)
 {
 	unsigned long i, offset;
 	ssize_t n = 0;
@@ -1730,7 +1706,7 @@ static ssize_t itmon_timeout_val_show(struct kobject *kobj,
 }
 
 static ssize_t itmon_timeout_freeze_show(struct kobject *kobj,
-			         struct kobj_attribute *attr, char *buf)
+		struct kobj_attribute *attr, char *buf)
 {
 	unsigned long i, offset;
 	ssize_t n = 0;
@@ -1935,7 +1911,6 @@ static int itmon_logging_panic_handler(struct notifier_block *nb,
 			} else if (pdata->sysfs_s2d) {
 				itmon_switch_s2d(itmon);
 			}
-
 		}
 	}
 	return 0;
@@ -1968,17 +1943,6 @@ static int itmon_probe(struct platform_device *pdev)
 	itmon->pdata->rpathinfo = rpathinfo;
 	itmon->pdata->nodegroup = nodegroup;
 
-#ifdef CONFIG_SEC_DEBUG
-	if (sec_debug_check_sj()) {
-		printk("%s: LOCKED, no s2d\n", __func__);
-		itmon->pdata->sysfs_s2d = 0;
-	} else {
-		printk("%s: UNLOCKED, s2d\n", __func__);
-		itmon->pdata->sysfs_s2d = 1;
-	}
-#endif
-
-
 	for (i = 0; i < (int)ARRAY_SIZE(nodegroup); i++) {
 		dev_name = nodegroup[i].name;
 		node = nodegroup[i].nodeinfo;
@@ -2001,7 +1965,7 @@ static int itmon_probe(struct platform_device *pdev)
 		ret = devm_request_irq(&pdev->dev, irq,
 				       itmon_irq_handler, irq_option, dev_name, itmon);
 		if (ret == 0) {
-			dev_info(&pdev->dev, "success to register request irq%u - %s\n", irq, dev_name);
+			dev_err(&pdev->dev, "success to register request irq%u - %s\n", irq, dev_name);
 		} else {
 			dev_err(&pdev->dev, "failed to request irq - %s\n", dev_name);
 			return -ENOENT;
