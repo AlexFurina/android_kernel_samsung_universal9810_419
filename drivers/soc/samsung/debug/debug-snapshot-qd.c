@@ -242,8 +242,10 @@ bool dbg_snapshot_qd_enable(void)
 {
 	bool ret = false;
 
+#if CONFIG_DEBUG_SNAPSHOT_DPM
 	if (dss_dpm.dump_mode == QUICK_DUMP)
 		ret = true;
+#endif
 
 	return ret;
 }
@@ -434,10 +436,13 @@ static void dbg_snapshot_qd_list_dump(void)
 
 static int dbg_snapshot_qd_probe(struct platform_device *pdev)
 {
+
+#ifdef CONFIG_DEBUG_SNAPSHOT_DPM
 	if (dss_dpm.dump_mode != QUICK_DUMP) {
 		dev_err(&pdev->dev, "No Quick dump mode\n");
 		return -ENODEV;
 	}
+#endif
 
 	qdump_dev = &pdev->dev;
 	dss_qd_table.entry = devm_kzalloc(qdump_dev, (DSS_QD_MAX_NUM_ENTRIES *

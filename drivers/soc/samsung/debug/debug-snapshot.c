@@ -211,6 +211,7 @@ unsigned long dbg_snapshot_get_last_pc(unsigned int cpu)
 }
 EXPORT_SYMBOL(dbg_snapshot_get_last_pc);
 
+#ifdef CONFIG_DEBUG_SNAPSHOT_DPM
 int dbg_snapshot_get_dpm_none_dump_mode(void)
 {
 	unsigned int val;
@@ -240,6 +241,7 @@ void dbg_snapshot_set_dpm_none_dump_mode(unsigned int mode)
 	}
 }
 EXPORT_SYMBOL(dbg_snapshot_set_dpm_none_dump_mode);
+#endif
 
 void dbg_snapshot_set_qd_entry(unsigned long address)
 {
@@ -300,9 +302,10 @@ void dbg_snapshot_set_item_enable(const char *name, int en)
 {
 	struct dbg_snapshot_item *item = NULL;
 
+#ifdef CONFIG_DEBUG_SNAPSHOT_DPM
 	if (!name || !dss_dpm.enabled_debug || dss_dpm.dump_mode == NONE_DUMP)
 		return;
-
+#endif
 	/* This is default for debug-mode */
 	item = dbg_snapshot_get_item(name);
 	if (item) {
@@ -717,6 +720,7 @@ static ssize_t dss_panic_to_wdt_store(struct device *dev,
 	return count;
 }
 
+#ifdef CONFIG_DEBUG_SNAPSHOT_DPM
 static ssize_t dss_dpm_none_dump_mode_show(struct device *dev,
 				struct device_attribute *attr, char *buf)
 {
@@ -747,6 +751,7 @@ static ssize_t dss_dpm_none_dump_mode_store(struct device *dev,
 			dss_dpm.dump_mode_none ? "" : "NOT ");
 	return count;
 }
+#endif
 
 static ssize_t dss_logging_item_show(struct device *dev,
 				struct device_attribute *attr, char *buf)
@@ -789,12 +794,16 @@ static ssize_t dss_forced_panic_store(struct device *dev,
 }
 
 DEVICE_ATTR_RW(dss_panic_to_wdt);
+#ifdef CONFIG_DEBUG_SNAPSHOT_DPM
 DEVICE_ATTR_RW(dss_dpm_none_dump_mode);
+#endif
 DEVICE_ATTR_RO(dss_logging_item);
 DEVICE_ATTR_RW(dss_forced_panic);
 
 static struct attribute *dss_sysfs_attrs[] = {
+#ifdef CONFIG_DEBUG_SNAPSHOT_DPM
 	&dev_attr_dss_dpm_none_dump_mode.attr,
+#endif
 	&dev_attr_dss_logging_item.attr,
 	&dev_attr_dss_panic_to_wdt.attr,
 	&dev_attr_dss_forced_panic.attr,
@@ -847,10 +856,12 @@ static __init int dbg_snapshot_init(void)
 {
 	struct device_node *root;
 
+#ifdef CONFIG_DEBUG_SNAPSHOT_DPM
 	if (dbg_snapshot_dt_scan_dpm()) {
 		pr_err("%s: no such dpm node\n", __func__);
 		return -ENODEV;
 	}
+#endif
 
 	root = of_find_node_by_name(NULL, "dss");
 	if (!root)
@@ -863,7 +874,9 @@ static __init int dbg_snapshot_init(void)
 	}
 
 	dbg_snapshot_fixmap();
+#ifdef CONFIG_DEBUG_SNAPSHOT_DPM
 	dbg_snapshot_init_dpm();
+#endif
 	dbg_snapshot_init_log();
 
 	return 0;
