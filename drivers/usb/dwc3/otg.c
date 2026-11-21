@@ -211,21 +211,6 @@ static void dwc3_otg_drv_vbus(struct otg_fsm *fsm, int on)
 						on ? "on" : "off");
 }
 
-int exynos_usbdrd_inform_dp_use(int use, int lane_cnt)
-{
-	int ret = 0;
-
-	if ((use == 1) && (lane_cnt == 4)) {
-		//ret = xhci_portsc_set(0);
-		udelay(1);
-	}
-	return ret;
-}
-
-void exynos_usbdrd_request_phy_isol(void)
-{
-
-}
 
 /*
     owner 0 - USB
