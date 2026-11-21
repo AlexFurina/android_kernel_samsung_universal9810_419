@@ -193,3 +193,5 @@ obj-$(CONFIG_EXYNOS_BTS)	+= bts/
 
 # Mobicore driver
 obj-$(CONFIG_TRUSTONIC_TEE)     += gud/
+
+obj-$(CONFIG_SWITCH)	+= switch/
