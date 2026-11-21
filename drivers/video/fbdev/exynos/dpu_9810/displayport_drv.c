@@ -1087,11 +1087,13 @@ void displayport_hpd_changed(int state)
  *		if (displayport->dex_state != DEX_RECONNECTING)
  *			displayport->dex_state = DEX_OFF;
  */
+#if defined(CONFIG_EXTCON)
 		if (extcon_get_state(displayport->extcon_displayport, EXTCON_DISP_DP) == 0 &&
 				displayport->bist_used == 1) {
 			displayport_info("bist mode off\n");
 			goto HPD_FAIL;
 		}
+#endif
 
 		dp_ado_switch_set_state(-1);
 		displayport_info("audio info = -1\n");
@@ -1590,8 +1592,10 @@ static void displayport_hpd_irq_work(struct work_struct *work)
 		if (displayport_check_dpcd_lane_status(val[2], val[3], val[4]) != 0) {
 			displayport_info("link training in HPD IRQ work2\n");
 
+#if defined(CONFIG_EXYNOS_HDCP2)
 			hdcp_dplink_set_reauth();
 			displayport_hdcp22_enable(0);
+#endif
 
 			displayport_link_training();
 
@@ -3875,7 +3879,9 @@ static ssize_t dp_sbu_sw_sel_store(struct class *dev,
 	if ((aux_sw_sel == 0 || aux_sw_sel == 1) && (aux_sw_oe == 0 || aux_sw_oe == 1)) {
 		if (gpio_is_valid(displayport->gpio_sw_sel))
 			gpio_direction_output(displayport->gpio_sw_sel, aux_sw_sel);
+#if defined(CONFIG_USB_TYPEC_MANAGER_NOTIFIER)
 		displayport_aux_onoff(displayport, !aux_sw_oe);
+#endif
 	} else
 		displayport_err("invalid aux switch parameter\n");
 

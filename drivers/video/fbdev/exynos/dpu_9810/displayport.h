@@ -603,10 +603,10 @@ struct displayport_device {
 	struct notifier_block dp_typec_nb;
 	ccic_notifier_dp_pinconf_t ccic_notify_dp_conf;
 	int notifier_registered;
-	bool dp_not_support;
 	bool ccic_link_conf;
 	bool ccic_hpd;
 #endif
+	bool dp_not_support;
 	int hpd_current_state;
 	enum hotplug_state hpd_state;
 	int dp_sw_sel;

@@ -253,9 +253,9 @@ void dpp_dump(struct dpp_device *dpp)
 		console_unlock();
 }
 
-void dpp_op_timer_handler(unsigned long arg)
+void dpp_op_timer_handler(struct timer_list *t)
 {
-	struct dpp_device *dpp = (struct dpp_device *)arg;
+	struct dpp_device *dpp = from_timer(dpp, t, d.op_timer);
 
 	dpp_dump(dpp);
 
@@ -1047,7 +1047,7 @@ static int dpp_probe(struct platform_device *pdev)
 
 	dpp_init_subdev(dpp);
 	platform_set_drvdata(pdev, dpp);
-	setup_timer(&dpp->d.op_timer, dpp_op_timer_handler, (unsigned long)dpp);
+	timer_setup(&dpp->d.op_timer, dpp_op_timer_handler, 0);
 
 	pm_runtime_enable(dev);
 

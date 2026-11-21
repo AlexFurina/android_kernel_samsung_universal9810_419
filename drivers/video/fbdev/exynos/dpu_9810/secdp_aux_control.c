@@ -59,6 +59,7 @@ struct secdp_aux_dev {
 	struct device *dev;
 	struct kref refcount;
 	atomic_t usecount;
+	wait_queue_head_t usecount_wait;
 	enum dp_auxcmd_type cmd_type;
 
 	ssize_t (*secdp_i2c_write)(void *buffer, size_t size);
@@ -196,7 +197,7 @@ static ssize_t auxdev_read(struct file *file, char __user *buf, size_t count,
 
 out:
 	atomic_dec(&aux_dev->usecount);
-	wake_up_atomic_t(&aux_dev->usecount);
+	wake_up_all(&aux_dev->usecount_wait);
 	return res;
 }
 
@@ -255,7 +256,7 @@ static ssize_t auxdev_write(struct file *file, const char __user *buf,
 
 out:
 	atomic_dec(&aux_dev->usecount);
-	wake_up_atomic_t(&aux_dev->usecount);
+	wake_up_all(&aux_dev->usecount_wait);
 	return res;
 }
 
@@ -317,12 +318,6 @@ static const struct file_operations auxdev_fops = {
 	.compat_ioctl	= auxdev_ioctl,
 };
 
-static int auxdev_wait_atomic_t(atomic_t *p)
-{
-	schedule();
-	return 0;
-}
-
 void secdp_aux_unregister_devnode(struct secdp_aux_dev *aux_dev)
 {
 	unsigned int minor;
@@ -332,8 +327,8 @@ void secdp_aux_unregister_devnode(struct secdp_aux_dev *aux_dev)
 	mutex_unlock(&aux_idr_mutex);
 
 	atomic_dec(&aux_dev->usecount);
-	wait_on_atomic_t(&aux_dev->usecount, auxdev_wait_atomic_t,
-			TASK_UNINTERRUPTIBLE);
+	wait_event(aux_dev->usecount_wait,
+			atomic_read(&aux_dev->usecount) == 0);
 
 	minor = aux_dev->index;
 	if (aux_dev->dev)
@@ -394,6 +389,7 @@ int secdp_aux_dev_init(ssize_t (*secdp_i2c_write)(void *buffer, size_t size),
 		return -ENOMEM;
 
 	atomic_set(&aux_dev->usecount, 1);
+	init_waitqueue_head(&aux_dev->usecount_wait);
 	kref_init(&aux_dev->refcount);
 
 	mutex_lock(&aux_idr_mutex);

@@ -3086,6 +3086,8 @@ static int decon_register_subdevs(struct decon_device *decon)
 	ret = dpu_get_sd_by_drvname(decon, DISPLAYPORT_MODULE_NAME);
 	if (ret)
 		return ret;
+	if (!decon->displayport_sd)
+		return -EPROBE_DEFER;
 #endif
 #ifdef CONFIG_EXYNOS_COMMON_PANEL
 	ret = dpu_get_sd_by_drvname(decon, PANEL_DRV_NAME);
@@ -3935,6 +3937,7 @@ err_display:
 err_win:
 	decon_unregister_subdevs(decon);
 err_subdev:
+	v4l2_device_unregister(&decon->v4l2_dev);
 	decon_destroy_debugfs(decon);
 err_pinctrl:
 	decon_destroy_psr_info(decon);

@@ -1017,6 +1017,8 @@ static const struct file_operations decon_rec_fops = {
 	.release = seq_release,
 };
 
+static struct dentry *decon_debug_root;
+
 int decon_create_debugfs(struct decon_device *decon)
 {
 	char name[MAX_NAME_SIZE];
@@ -1042,17 +1044,16 @@ int decon_create_debugfs(struct decon_device *decon)
 	}
 	decon->d.event_log_cnt = event_cnt;
 
-	if (!decon->id) {
-		decon->d.debug_root = debugfs_create_dir("decon", NULL);
-		if (!decon->d.debug_root) {
+	if (!decon_debug_root) {
+		decon_debug_root = debugfs_create_dir("decon", NULL);
+		if (IS_ERR_OR_NULL(decon_debug_root)) {
 			decon_err("failed to create debugfs root directory.\n");
-			ret = -ENOENT;
+			ret = decon_debug_root ? PTR_ERR(decon_debug_root) : -ENOENT;
+			decon_debug_root = NULL;
 			goto err_event_log;
 		}
 	}
-
-	if (decon->id == 1 || decon->id == 2)
-		decon->d.debug_root = decon_drvdata[0]->d.debug_root;
+	decon->d.debug_root = decon_debug_root;
 
 	snprintf(name, MAX_NAME_SIZE, "event%d", decon->id);
 	atomic_set(&decon->d.event_log_idx, -1);
@@ -1124,7 +1125,7 @@ int decon_create_debugfs(struct decon_device *decon)
 	return 0;
 
 err_debugfs:
-	debugfs_remove_recursive(decon->d.debug_root);
+	decon_destroy_debugfs(decon);
 err_event_log:
 	kfree(decon->d.event_log);
 	decon->d.event_log = NULL;
@@ -1133,8 +1134,18 @@ err_event_log:
 
 void decon_destroy_debugfs(struct decon_device *decon)
 {
-	if (decon->d.debug_root)
-		debugfs_remove(decon->d.debug_root);
-	if (decon->d.debug_event)
-		debugfs_remove(decon->d.debug_event);
+	struct dentry *entries[] = {
+		decon->d.debug_event, decon->d.debug_dump,
+		decon->d.debug_bts, decon->d.debug_win,
+		decon->d.debug_systrace,
+#if defined(CONFIG_DSIM_CMD_TEST)
+		decon->d.debug_cmd,
+#endif
+		decon->d.debug_recovery_cnt, decon->d.debug_cmd_lp_ref,
+	};
+	int i;
+
+	for (i = 0; i < ARRAY_SIZE(entries); i++)
+		if (!IS_ERR_OR_NULL(entries[i]))
+			debugfs_remove(entries[i]);
 }

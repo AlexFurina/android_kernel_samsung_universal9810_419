@@ -398,9 +398,9 @@ exit:
 	return ret;
 }
 
-static void dsim_cmd_fail_detector(unsigned long arg)
+static void dsim_cmd_fail_detector(struct timer_list *t)
 {
-	struct dsim_device *dsim = (struct dsim_device *)arg;
+	struct dsim_device *dsim = from_timer(dsim, t, cmd_timer);
 	struct decon_device *decon = get_decon_drvdata(0);
 
 	decon_hiber_block(decon);
@@ -1675,8 +1675,7 @@ static int dsim_probe(struct platform_device *pdev)
 #if defined(CONFIG_EXYNOS_COMMON_PANEL)
 	call_panel_ops(dsim, init, dsim);
 #endif
-	setup_timer(&dsim->cmd_timer, dsim_cmd_fail_detector,
-			(unsigned long)dsim);
+	timer_setup(&dsim->cmd_timer, dsim_cmd_fail_detector, 0);
 
 	pm_runtime_enable(dev);
 
