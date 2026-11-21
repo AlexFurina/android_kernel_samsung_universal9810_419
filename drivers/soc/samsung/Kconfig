@@ -151,4 +151,11 @@ config EXYNOS_SDM
 	  Exynos Security Dump Manager
 
 source "drivers/soc/samsung/debug/Kconfig"
+
+config SEC_PM
+	bool "Samsung Mobile Power Management"
+	default y
+	help
+	  This option enables support for various drivers and features for
+	  Samsung Mobile Power Management.
 endif
