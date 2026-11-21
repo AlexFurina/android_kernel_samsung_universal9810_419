@@ -154,3 +154,12 @@ config PHY_EXYNOS_MIPI_DSIM
     help
       Support for MIPI DSI DPHY found on Samsung
       and EXYNOS SoCs.
+
+config PHY_EXYNOS_DISPLAYPORT
+	tristate "Samsung EXYNOS SoC DISPLAYPORT PHY driver"
+	depends on HAS_IOMEM
+	depends on ARCH_EXYNOS && OF || COMPILE_TEST
+	select GENERIC_PHY
+	help
+	  Support for DISPLAYPORT PHY found on Samsung
+	  and EXYNOS SoCs.
